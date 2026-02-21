@@ -13,7 +13,8 @@
         "test": "jest"
     },
     "dependencies": {
-        "@chatgpt-telegram-workers/plugins": "workspace:*"
+        "@chatgpt-telegram-workers/plugins": "workspace:*",
+        "convex": "^1.32.0"
     },
     "devDependencies": {
         "@cloudflare/workers-types": "^4.20251014.0",

@@ -4,6 +4,7 @@ import { createRouter } from './route';
 export * from './agent';
 export * from './config';
 export * from './i18n';
+export * from './memory';
 export * from './route';
 export * from './telegram';
 

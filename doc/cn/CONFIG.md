@@ -76,6 +76,19 @@ OPENAI_API_BASE,GOOGLE_COMPLETIONS_API,MISTRAL_API_BASE,COHERE_API_BASE,ANTHROPI
 | DEBUG_MODE            | 调试模式     | `false`            | 开启后会保存最新一条消息    |
 | DEV_MODE              | 开发模式     | `false`            | 开启后会展示更多调试信息    |
 
+### 记忆配置
+
+| KEY                                     | 名称                 | 默认值   | 描述                                               |
+|-----------------------------------------|----------------------|--------|----------------------------------------------------|
+| MEMORY_ENABLE                           | 启用记忆系统          | `false` | 开启自动记忆抽取与检索                              |
+| MEMORY_CONVEX_URL                       | Convex HTTP 地址     | `''`    | Convex HTTP Endpoint 基础地址                     |
+| MEMORY_CONVEX_SECRET                    | Convex HTTP 密钥     | `null`  | 可选的 `Authorization: Bearer` 密钥                |
+| MEMORY_CONTEXT_MAX_CHARS                | 记忆上下文最大字符数  | `1200`  | 插入系统提示词的最大字符数                         |
+| MEMORY_EXTRACTION_MAX_CONTEXT_MESSAGES  | 抽取上下文消息数量    | `6`     | 抽取时使用的最近消息条数                           |
+| MEMORY_EXTRACTION_MIN_INTERVAL_SECONDS  | 抽取最小间隔(秒)      | `30`    | 自动抽取的最小间隔，0 表示不限制                   |
+
+> Convex 需要配置 `OPENROUTER_API_KEY`、`OPENROUTER_CHAT_MODEL`、`OPENROUTER_EMBEDDING_MODEL` 环境变量用于抽取与向量化。
+
 ## 用户配置
 
 每个用户的自定义配置，只能通过Telegram发送消息来修改，消息格式为`/setenv KEY=VALUE`, 用户配置的优先级比系统配置的更高。如果想删除配置，请使用`/delenv KEY`。 批量设置变量请使用`/setenvs {"KEY1": "VALUE1", "KEY2": "VALUE2"}`

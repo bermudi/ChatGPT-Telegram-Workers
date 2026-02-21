@@ -154,3 +154,4 @@ wrangler.toml
 /dist/src
 /packages/**/dist
 .env*.local
+convex/_generated/

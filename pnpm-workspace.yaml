@@ -1,3 +1,10 @@
 packages:
   - packages/apps/*
   - packages/lib/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - sqlite3
+  - unrs-resolver
+  - workerd

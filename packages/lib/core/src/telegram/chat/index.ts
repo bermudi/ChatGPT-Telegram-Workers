@@ -3,6 +3,7 @@ import type { WorkerContext } from '#/config';
 import type * as Telegram from 'telegram-bot-api-types';
 import { loadChatLLM, requestCompletionsFromLLM } from '#/agent';
 import { ENV } from '#/config';
+import { buildMemoryPrompt, mergeSystemPrompt, queueMemoryExtraction } from '#/memory';
 import { createTelegramBotAPI } from '../api';
 import { MessageSender } from '../sender';
 
@@ -58,7 +59,13 @@ export async function chatWithMessage(message: Telegram.Message, params: UserMes
         if (agent === null) {
             return sender.sendPlainText('LLM is not enable');
         }
-        const answer = await requestCompletionsFromLLM(params, context, agent, modifier, onStream);
+        const memoryPrompt = await buildMemoryPrompt(message, params).catch((error) => {
+            console.error(error);
+            return '';
+        });
+        const systemPrompt = mergeSystemPrompt(context.USER_CONFIG.SYSTEM_INIT_MESSAGE, memoryPrompt) || undefined;
+        const answer = await requestCompletionsFromLLM(params, context, agent, modifier, onStream, systemPrompt);
+        queueMemoryExtraction(message, params, context).catch(console.error);
         if (nextEnableTime !== null && nextEnableTime > Date.now()) {
             await new Promise(resolve => setTimeout(resolve, (nextEnableTime ?? 0) - Date.now()));
         }

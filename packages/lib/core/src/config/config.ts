@@ -269,4 +269,19 @@ export class EnvironmentConfig {
     DEBUG_MODE = false;
     // 开发模式
     DEV_MODE = false;
+
+    // -- 记忆系统 --
+    //
+    // 是否启用记忆系统
+    MEMORY_ENABLE = false;
+    // Convex HTTP endpoint base URL
+    MEMORY_CONVEX_URL = '';
+    // Convex HTTP auth secret (optional)
+    MEMORY_CONVEX_SECRET: string | null = null;
+    // 最大插入提示词字符数
+    MEMORY_CONTEXT_MAX_CHARS = 1200;
+    // 参与自动抽取的历史条数
+    MEMORY_EXTRACTION_MAX_CONTEXT_MESSAGES = 6;
+    // 自动抽取最小间隔(秒)，0为不限制
+    MEMORY_EXTRACTION_MIN_INTERVAL_SECONDS = 30;
 }

@@ -76,6 +76,19 @@ OPENAI_API_BASE,GOOGLE_COMPLETIONS_API,MISTRAL_API_BASE,COHERE_API_BASE,ANTHROPI
 | DEBUG_MODE            | Debug mode              | `false`            | When enabled, the latest message will be saved              |
 | DEV_MODE              | Development mode        | `false`            | When enabled, more debugging information will be displayed  |
 
+### Memory configuration
+
+| KEY                                     | Name                               | Default  | Description                                                                 |
+|-----------------------------------------|------------------------------------|----------|-----------------------------------------------------------------------------|
+| MEMORY_ENABLE                           | Enable memory system               | `false`  | Enable automatic memory extraction and retrieval                            |
+| MEMORY_CONVEX_URL                       | Convex HTTP endpoint               | `''`     | Convex HTTP endpoint base URL (e.g. `https://your.convex.site`)            |
+| MEMORY_CONVEX_SECRET                    | Convex HTTP auth secret            | `null`   | Optional `Authorization: Bearer` secret for Convex HTTP endpoints           |
+| MEMORY_CONTEXT_MAX_CHARS                | Memory context max chars           | `1200`   | Max characters appended to system prompt for memory context                 |
+| MEMORY_EXTRACTION_MAX_CONTEXT_MESSAGES  | Extraction context window size     | `6`      | Number of recent messages used as context for memory extraction             |
+| MEMORY_EXTRACTION_MIN_INTERVAL_SECONDS  | Extraction minimum interval (sec)  | `30`     | Minimum interval between auto-extraction calls (0 to disable throttling)    |
+
+> Convex should be configured with `OPENROUTER_API_KEY`, `OPENROUTER_CHAT_MODEL`, and `OPENROUTER_EMBEDDING_MODEL` environment variables for extraction + embeddings.
+
 ## User configuration
 
 Each user's custom configuration can only be modified by sending a message through Telegram. The message format is `/setenv KEY=VALUE`. User configurations have a higher priority than system configurations. If you want to delete a configuration, please use `/delenv KEY`. To set variables in batches, please use `/setenvs {"KEY1": "VALUE1", "KEY2": "VALUE2"}`.

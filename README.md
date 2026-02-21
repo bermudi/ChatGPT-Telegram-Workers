@@ -35,6 +35,7 @@ You can customize the system initialization information so that your debugged pe
 - Multi-language support
 - Text-to-image generation
 - [Plugin System](doc/en/PLUGINS.md), customizable plugins.
+- Auto memory extraction + retrieval (Convex + OpenRouter embeddings)
 
 
 ## Documentation
